@@ -1,13 +1,11 @@
-package se.yrgo.restarurant_service;
+package se.yrgo.restaurantservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestarurantServiceApplication {
-
+public class RestaurantServiceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(RestarurantServiceApplication.class, args);
+		SpringApplication.run(RestaurantServiceApplication.class, args);
 	}
-
 }
