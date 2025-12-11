@@ -1,4 +1,4 @@
-package se.yrgo.restaurantservice;
+package se.yrgo.restarurantservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
