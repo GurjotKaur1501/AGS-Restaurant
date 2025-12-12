@@ -27,7 +27,18 @@ public class Restaurant {
     private List<Table> tables = new ArrayList<>();
 
     public void addTable(Table table) {
+        validateTable(table);
+        linkTable(table);
+    }
+
+    private void validateTable(Table table) {
+        if (table == null) {
+            throw new IllegalArgumentException("Table must not be null");
+        }
+    }
+
+    private void linkTable(Table table) {
+        table.toString(); // calls Table.setRestaurant(...)
         tables.add(table);
-        table.setRestaurant(this);
     }
 }

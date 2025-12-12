@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@javax.persistence.Table(name = "tables")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,5 +20,10 @@ public class Table {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
+    private se.yrgo.restarurantservice.entity.Restaurant restaurant;
+
+    // Explicit setter — add this to be 100% sure it's available
+    public void setRestaurant(se.yrgo.restarurantservice.entity.Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 }
