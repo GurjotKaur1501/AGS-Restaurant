@@ -13,13 +13,14 @@
 	</parent>
 
 	<groupId>se.yrgo</groupId>
-	<artifactId>restaurant-service</artifactId> <!-- corrected name -->
+	<artifactId>restaurant-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>restaurant-service</name>
 	<description>Restaurant microservice</description>
 
 	<properties>
 		<java.version>21</java.version>
+		<spring-boot.version>3.5.8</spring-boot.version>
 	</properties>
 
 	<dependencies>
@@ -46,7 +47,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- ModelMapper (you already added this) -->
+		<!-- ModelMapper -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
@@ -61,7 +62,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Devtools -->
+		<!-- DevTools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -96,11 +97,10 @@
 				</configuration>
 			</plugin>
 
-			<!-- Spring Boot plugin -->
+			<!-- Spring Boot plugin: use explicit version from property -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!--suppress UnresolvedMavenProperty -->
 				<version>${spring-boot.version}</version>
 				<configuration>
 					<excludes>
