@@ -10,4 +10,16 @@ public class ModelMapperConfig {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
+    @Bean
+    public ModelMapper modelMapper1() {
+        ModelMapper mm = new ModelMapper();
+        mm.getConfiguration()
+                .setAmbiguityIgnored(true)
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
+        return mm;
+    }
+
 }
+

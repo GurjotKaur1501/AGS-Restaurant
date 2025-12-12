@@ -38,7 +38,7 @@ public class Restaurant {
     }
 
     private void linkTable(Table table) {
-        table.toString(); // calls Table.setRestaurant(...)
+        table.setRestaurant(this); // calls Table.setRestaurant(...)
         tables.add(table);
     }
 }

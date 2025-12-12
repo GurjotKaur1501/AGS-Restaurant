@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@jakarta.persistence.Table(name = "tables")
 @Getter
 @Setter
 @NoArgsConstructor
