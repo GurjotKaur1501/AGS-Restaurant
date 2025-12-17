@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bookings")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*") // Allow all origins for development
 public class BookingController {
 
     private final BookingFacade bookingFacade;
@@ -28,7 +29,7 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-//    get all bookings
+    //    get all bookings
     @GetMapping
     public ResponseEntity<List<BookingDTO>> getAllBookings() {
         List<BookingDTO> bookings = bookingService.getAllBookings();
