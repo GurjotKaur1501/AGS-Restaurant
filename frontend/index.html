@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Booking System</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">BookIT</div>
+      <nav class="nav">
+        <a href="#" class="navlink" id="navHome">Home</a>
+        <a href="#" class="navlink">About</a>
+        <a href="#" class="navlink">Log in</a>
+        <button class="btn btn-primary btn-sm" id="btnSignUp" type="button">Sign Up</button>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="shell">
+        <div class="card">
+          <div class="card-inner">
+            <!-- Generic header (used by most steps). Restaurant details has its own header inside. -->
+            <div class="wizard-header" id="wizardHeader">
+              <h1 id="screenTitle">Table Hub</h1>
+              <p class="muted" id="screenSubtitle">Fast and seamless restaurant booking experience.</p>
+            </div>
+
+            <!-- Step: Home -->
+            <div class="step" id="step-home">
+              <div class="landing">
+                <div class="landing-media">
+                  <img
+                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=60"
+                    alt="Restaurant dish"
+                  />
+                </div>
+
+                <div class="landing-content">
+                  <p class="landing-sub">
+                      Effortless and rapid restaurant reservations.<br />
+                    Explore restaurants, view menus, and book in seconds.
+                  </p>
+
+                  <button class="btn btn-primary btn-lg" id="startBooking" type="button">
+                    Book a Table
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step: Restaurant List -->
+            <div class="step hidden" id="step-restaurants">
+              <div class="list" id="restaurantList"></div>
+
+              <div class="footer-actions">
+                <button class="btn btn-ghost" id="backToHome" type="button">Back</button>
+              </div>
+            </div>
+
+            <!-- Step: Restaurant Details (landing for a selected restaurant) -->
+            <div class="step hidden" id="step-restaurant">
+              <div class="restaurant-page">
+                <div class="rest-header">
+                  <div>
+                    <h1 class="rest-title" id="restName">Restaurant Name</h1>
+                    <div class="rest-meta">
+                      <div id="restAddress">Address</div>
+                      <div class="muted" id="restCuisine">Cuisine • Avg price</div>
+                      <div class="rest-rating" id="restRating">★ 8.5 (761 omdömen)</div>
+                    </div>
+                  </div>
+
+                  <button class="icon-heart" id="favoriteBtn" type="button" aria-label="Favorite">
+                    ♡
+                  </button>
+                </div>
+
+                <!-- Gallery -->
+                <div class="gallery" id="gallery"></div>
+
+                <!-- Main grid: left content + right booking widget -->
+                <div class="rest-grid">
+                  <!-- Left column -->
+                  <div class="rest-left">
+                    <div class="tabs">
+                      <button class="tab active" type="button" data-tab="about">Om</button>
+                      <button class="tab" type="button" data-tab="menu">Meny</button>
+                      <button class="tab" type="button" data-tab="reviews">Omdömen</button>
+                    </div>
+
+                    <div class="tab-panel" id="tab-about">
+                      <h3 class="section-title">Om</h3>
+                      <p class="muted" id="restAbout">Restaurant description...</p>
+
+                      <div class="info-cards" id="restInfoCards"></div>
+                    </div>
+
+                    <div class="tab-panel hidden" id="tab-menu">
+                      <h3 class="section-title">Restaurangmeny</h3>
+                      <div class="menu-list" id="menuList"></div>
+                    </div>
+
+                    <div class="tab-panel hidden" id="tab-reviews">
+                      <h3 class="section-title">Omdömen</h3>
+                      <p class="muted">
+                        Reviews placeholder. You can optionally load these from your restaurant-service.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Right booking widget -->
+                  <aside class="booking-widget">
+                    <div class="booking-title">Boka ett bord</div>
+                    <div class="muted booking-sub">Kostnadsfritt</div>
+
+                    <div class="panel booking-panel">
+                      <div class="calendar">
+                        <div class="cal-header">
+                          <button class="icon-btn" id="prevMonth" type="button" aria-label="Previous month">‹</button>
+                          <div>
+                            <div class="cal-month" id="calMonthLabel">Month Year</div>
+                            <div class="cal-sub muted" id="calPickedLabel">Pick a date</div>
+                          </div>
+                          <button class="icon-btn" id="nextMonth" type="button" aria-label="Next month">›</button>
+                        </div>
+
+                        <div class="cal-grid" id="calGrid"></div>
+                      </div>
+                    </div>
+
+                    <button class="btn btn-primary booking-cta" id="toTimeFromRestaurant" type="button" disabled>
+                      Välj tid
+                    </button>
+
+                    <div class="muted booking-footnote">
+                      Erbjudanden baseras på tid, datum och antal gäster och kan variera.
+                    </div>
+                  </aside>
+                </div>
+
+                <div class="footer-actions">
+                  <button class="btn btn-ghost" id="backToRestaurantList" type="button">Back</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step: Time selection -->
+            <div class="step hidden" id="step-time">
+              <div class="panel">
+                <div class="summary" id="summaryTimeTop"></div>
+
+                <div class="slot-block">
+                  <div class="slot-title">
+                    <span>Lunch</span>
+                    <span class="muted">(11:00–14:00)</span>
+                  </div>
+                  <div class="slots" id="lunchSlots"></div>
+                </div>
+
+                <div class="slot-block">
+                  <div class="slot-title">
+                    <span>Dinner</span>
+                    <span class="muted">(17:00–22:00)</span>
+                  </div>
+                  <div class="slots" id="dinnerSlots"></div>
+                </div>
+              </div>
+
+              <div class="footer-actions">
+                <button class="btn btn-ghost" id="backToDate" type="button">Back</button>
+                <button class="btn btn-primary" id="toGuests" type="button" disabled>Continue</button>
+              </div>
+            </div>
+
+            <!-- Step: Guest selection -->
+            <div class="step hidden" id="step-guests">
+              <div class="panel">
+                <div class="summary" id="summaryGuestsTop"></div>
+
+                <label class="field">
+                  <span class="label">Guests</span>
+
+                  <div class="row">
+                    <button class="btn btn-ghost btn-square" id="guestMinus" type="button" aria-label="Decrease guests">−</button>
+                    <div class="guest-pill">
+                      <span id="guestValue">2</span>
+                      <span class="muted">guest(s)</span>
+                    </div>
+                    <button class="btn btn-ghost btn-square" id="guestPlus" type="button" aria-label="Increase guests">+</button>
+                  </div>
+
+                  <span class="help muted">Select between 1 and 10 guests.</span>
+                </label>
+              </div>
+
+              <div class="footer-actions">
+                <button class="btn btn-ghost" id="backToTime" type="button">Back</button>
+                <button class="btn btn-primary" id="toEmail" type="button">Continue</button>
+              </div>
+            </div>
+
+            <!-- Step: Email confirmation -->
+            <div class="step hidden" id="step-email">
+              <div class="panel">
+                <div class="confirm-card">
+                  <img class="confirm-img" id="confirmImg" alt="Restaurant image" />
+                  <div class="confirm-meta">
+                    <div class="confirm-title" id="confirmName">Restaurant Name</div>
+                    <div class="confirm-sub muted" id="confirmDetail">Date at time</div>
+                  </div>
+                </div>
+
+                <label class="field">
+                  <span class="label">Email address</span>
+                  <input
+                    class="input"
+                    type="email"
+                    id="emailInput"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                  />
+                  <span class="help muted">We will send your confirmation here.</span>
+                </label>
+              </div>
+
+              <div class="footer-actions">
+                <button class="btn btn-ghost" id="backToGuests" type="button">Back</button>
+                <button class="btn btn-primary" id="confirmBooking" type="button" disabled>Confirm Booking</button>
+              </div>
+
+              <div class="toast hidden" id="toast"></div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Image modal -->
+    <div class="modal hidden" id="imgModal" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+        <img id="modalImg" alt="Full size" />
+      </div>
+    </div>
+
+    <!-- JS entry (modules) -->
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

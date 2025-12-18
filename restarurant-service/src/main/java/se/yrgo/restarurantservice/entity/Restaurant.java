@@ -24,6 +24,7 @@ public class Restaurant {
     private CuisineType cuisineType;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Builder.Default // ensures arraylist is initiated even when using Builder
     private List<Table> tables = new ArrayList<>();
 
     public void addTable(Table table) {

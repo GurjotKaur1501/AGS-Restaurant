@@ -10,7 +10,7 @@ import se.yrgo.restarurantservice.service.RestaurantService;
 
 import java.net.URI;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/restaurants")
 @RequiredArgsConstructor

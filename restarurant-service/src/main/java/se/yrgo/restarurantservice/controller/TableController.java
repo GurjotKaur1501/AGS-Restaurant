@@ -11,7 +11,7 @@ import se.yrgo.restarurantservice.service.TableService;
 
 import java.net.URI;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/tables")
 @RequiredArgsConstructor
